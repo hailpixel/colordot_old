@@ -1,22 +1,26 @@
 //
-//  PaletteViewController.h
+//  UIPaletteViewController.h
 //  colordot
 //
-//  Created by Devin Hunt on 6/14/13.
+//  Created by Devin Hunt on 6/28/13.
 //  Copyright (c) 2013 Devin Hunt. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
-#import "UIPaletteViewDataSource.h"
-@class UIColorPickerView, UIPaletteView;
+#import "UISwatchListDataSource.h"
+#import "UIColorPickerDelegate.h"
+@class UISwatchListViewController, UIColorPickerViewController, UISwatchListView;
 
-@interface UIPaletteViewController : UIViewController <UIPaletteViewDataSource>
+@interface UIPaletteViewController : UIViewController <UISwatchListDataSource, UIColorPickerDelegate> {
+    UIColorPickerViewController *pickerViewController;
+    UISwatchListView *swatchListView;
+    
+    NSMutableArray *colors;
+}
 
-@property (nonatomic, strong) NSMutableArray *colors;
-@property (nonatomic, strong) UIPaletteView *paletteView;
-@property (nonatomic, strong) UIColorPickerView *pickerView;
+- (void)layoutViews;
 
-- (void)layoutView;
-- (void)handlePickerTap:(UITapGestureRecognizer *)sender;
+- (void)fetchRecords;
+- (void)addColor:(UIColor *)color;
 
 @end

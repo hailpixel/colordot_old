@@ -1,64 +1,52 @@
 //
-//  PaletteViewController.m
+//  UIPaletteViewController.m
 //  colordot
 //
-//  Created by Devin Hunt on 6/14/13.
+//  Created by Devin Hunt on 6/28/13.
 //  Copyright (c) 2013 Devin Hunt. All rights reserved.
 //
 
 #import "UIPaletteViewController.h"
-#import "UIPaletteView.h"
-#import "UIColorSwatch.h"
-#import "UIColorPickerView.h"
+#import "UISwatchListViewController.h"
+#import "UIColorPickerViewController.h"
+#import "UISwatchListView.h"
+#import "UISwatch.h"
 
-@implementation UIPaletteViewController {
-    UIColor *lastPickedColor;
-}
-@synthesize colors, paletteView, pickerView;
+@implementation UIPaletteViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        lastPickedColor = [UIColor colorWithHue:0.0f saturation:0.5f brightness:0.0f alpha:1.0f];
-        colors = [[NSMutableArray alloc] init];
+        pickerViewController = [[UIColorPickerViewController alloc] init];
+        pickerViewController.delegate = (UIViewController <UIColorPickerDelegate> *) self;
+        
     }
     return self;
 }
 
 - (void)loadView {
     CGRect appFrame = [[UIScreen mainScreen] applicationFrame];
-    UIView *contentView = [[UIView alloc] initWithFrame:appFrame];
-    self.view = contentView;
+    UIView *container = [[UIView alloc] initWithFrame:appFrame];
     
-    paletteView = [[UIPaletteView alloc] init];
-    paletteView.dataSource = self;
-    [self.view addSubview:paletteView];
+    self.view = container;
+    container.backgroundColor = [UIColor redColor];
     
-    pickerView = [[UIColorPickerView alloc] init];
-    [self.view addSubview:pickerView];
+    swatchListView = [[UISwatchListView alloc] initWithFrame:appFrame];
+    swatchListView.dataSource = (UIViewController <UISwatchListDataSource> *) self;
+    [self.view addSubview:swatchListView];
     
-    UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handlePickerTap:)];
-    tapRecognizer.numberOfTapsRequired = 1;
-    [pickerView addGestureRecognizer:tapRecognizer];
+    [self.view addSubview:[pickerViewController view]];
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self layoutView];
-    [paletteView reloadData];
-}
-
-- (void)layoutView {
-    CGRect bounds = [self.view bounds];
-    NSInteger totalColors = [colors count];
     
-    CGFloat paletteHeight = totalColors * bounds.size.height / (totalColors + 3);
-    CGFloat pickerHeight = bounds.size.height - paletteHeight;
+    UIView *pickerView = [pickerViewController view];
+    pickerView.frame = self.view.bounds;
     
-    paletteView.frame = CGRectMake(0, 0, 320, paletteHeight);
-    pickerView.frame = CGRectMake(0, paletteHeight, bounds.size.width, pickerHeight);
+    [self fetchRecords];
 }
 
 - (void)didReceiveMemoryWarning
@@ -67,46 +55,49 @@
     // Dispose of any resources that can be recreated.
 }
 
-# pragma mark - Touch handling
-- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
-    [super touchesMoved:touches withEvent:event];
+#pragma mark View layout
+- (void)layoutViews {
+    CGRect paletteRect, editorRect, bounds = [self.view bounds];
     
-    NSSet *pickerTouches = [event touchesForView:pickerView];
-    UITouch *pickerTouch = [pickerTouches anyObject];
+    NSUInteger sections = [colors count] + 1;
+    CGFloat itemHeight = bounds.size.height / sections;
     
-    if(pickerTouch) {
-        CGPoint touchLocation = [pickerTouch locationInView:pickerView];
-        
-        CGFloat hue = touchLocation.x / pickerView.bounds.size.width;
-        CGFloat brightness = touchLocation.y / pickerView.bounds.size.height;
-        
-        lastPickedColor = [UIColor colorWithHue:hue saturation:0.5f brightness:brightness alpha:1.0f];
-        [pickerView setColor:lastPickedColor];
-    }
+    paletteRect = CGRectMake(0.0f, 0.0f, bounds.size.width, itemHeight * [colors count]);
+    editorRect = CGRectMake(0.0f, paletteRect.size.height, bounds.size.width, itemHeight);
+    
+    [swatchListView updateSwatches];
+    
+    [UIView animateWithDuration:3.0f animations:^ {
+        swatchListView.frame = paletteRect;
+        [pickerViewController view].frame = editorRect;
+    }];
 }
 
-- (void)handlePickerTap:(UITapGestureRecognizer *)sender {
-    if(sender.state == UIGestureRecognizerStateEnded) {
-        UIColor *newColor = [lastPickedColor copy];
-        [colors addObject:newColor];
-        
-        // TODO: Ugh.. this screams bad MVC..
-        [self layoutView];
-        [paletteView reloadData];
-    }
-}
 
-# pragma mark - Palette data source methods
-- (NSInteger)numberOfSwatchesInPaletteView:(UIPaletteView *)paletteView {
+#pragma mark UISwatchListDataSource methods
+- (NSUInteger)numberOfSwatches {
     return [colors count];
 }
 
-- (UIColorSwatch *)paletteView:(UIPaletteView *)paletteView swatchForRow:(NSInteger) row {
+- (UISwatch *)swatchForListRow:(NSUInteger)row {
     UIColor *color = [colors objectAtIndex:row];
-    UIColorSwatch *swatch = [[UIColorSwatch alloc] init];
-    swatch.color = color;
-    
+    UISwatch *swatch = [[UISwatch alloc] initWithColor:color];
     return swatch;
+}
+
+#pragma mark UIColorPickerDelegate methods
+- (void)colorPicked:(UIColor *)color {
+    [self addColor:color];
+}
+
+#pragma mark Data management
+- (void)fetchRecords {
+    colors = [[NSMutableArray alloc] init];
+}
+
+- (void)addColor:(UIColor *)color {
+    [colors addObject:color];
+    [self layoutViews];
 }
 
 @end

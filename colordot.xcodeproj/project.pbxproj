@@ -7,7 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		031631DA17708022008FABE3 /* UIColorPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 031631D917708022008FABE3 /* UIColorPickerView.m */; };
+		03A5556D177DAE4F00C513ED /* UIPaletteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03A5556C177DAE4F00C513ED /* UIPaletteViewController.m */; };
+		03A55574177DB6DF00C513ED /* UISwatchListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 03A55573177DB6DF00C513ED /* UISwatchListView.m */; };
+		03A55577177DB79200C513ED /* UISwatch.m in Sources */ = {isa = PBXBuildFile; fileRef = 03A55576177DB79200C513ED /* UISwatch.m */; };
+		03A5557C177DD01E00C513ED /* UIColorPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03A5557B177DD01E00C513ED /* UIColorPickerViewController.m */; };
+		03A5557F177DD3A400C513ED /* ColorPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 03A5557E177DD3A400C513ED /* ColorPickerView.m */; };
 		03E1157C176B68F60064284D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03E1157B176B68F60064284D /* UIKit.framework */; };
 		03E1157E176B68F60064284D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03E1157D176B68F60064284D /* Foundation.framework */; };
 		03E11580176B68F60064284D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03E1157F176B68F60064284D /* CoreGraphics.framework */; };
@@ -25,9 +29,6 @@
 		03E115A2176B68F60064284D /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03E11581176B68F60064284D /* CoreData.framework */; };
 		03E115AA176B68F60064284D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 03E115A8176B68F60064284D /* InfoPlist.strings */; };
 		03E115AD176B68F60064284D /* colordotTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 03E115AC176B68F60064284D /* colordotTests.m */; };
-		03E115B8176B705D0064284D /* UIPaletteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03E115B7176B705D0064284D /* UIPaletteViewController.m */; };
-		03E115BB176B71210064284D /* UIPaletteView.m in Sources */ = {isa = PBXBuildFile; fileRef = 03E115BA176B71210064284D /* UIPaletteView.m */; };
-		03E115BE176B788F0064284D /* UIColorSwatch.m in Sources */ = {isa = PBXBuildFile; fileRef = 03E115BD176B788F0064284D /* UIColorSwatch.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,9 +42,18 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		031631D2176F653C008FABE3 /* UIPaletteViewDataSource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIPaletteViewDataSource.h; sourceTree = "<group>"; };
-		031631D817708022008FABE3 /* UIColorPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIColorPickerView.h; sourceTree = "<group>"; };
-		031631D917708022008FABE3 /* UIColorPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIColorPickerView.m; sourceTree = "<group>"; };
+		03A5556B177DAE4F00C513ED /* UIPaletteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIPaletteViewController.h; sourceTree = "<group>"; };
+		03A5556C177DAE4F00C513ED /* UIPaletteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIPaletteViewController.m; sourceTree = "<group>"; };
+		03A55572177DB6DF00C513ED /* UISwatchListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UISwatchListView.h; sourceTree = "<group>"; };
+		03A55573177DB6DF00C513ED /* UISwatchListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UISwatchListView.m; sourceTree = "<group>"; };
+		03A55575177DB79200C513ED /* UISwatch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UISwatch.h; sourceTree = "<group>"; };
+		03A55576177DB79200C513ED /* UISwatch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UISwatch.m; sourceTree = "<group>"; };
+		03A55578177DB7DA00C513ED /* UISwatchListDataSource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UISwatchListDataSource.h; sourceTree = "<group>"; };
+		03A5557A177DD01E00C513ED /* UIColorPickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIColorPickerViewController.h; sourceTree = "<group>"; };
+		03A5557B177DD01E00C513ED /* UIColorPickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIColorPickerViewController.m; sourceTree = "<group>"; };
+		03A5557D177DD3A400C513ED /* ColorPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorPickerView.h; sourceTree = "<group>"; };
+		03A5557E177DD3A400C513ED /* ColorPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorPickerView.m; sourceTree = "<group>"; };
+		03A555801781D8AB00C513ED /* UIColorPickerDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIColorPickerDelegate.h; sourceTree = "<group>"; };
 		03E11578176B68F60064284D /* colordot.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = colordot.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		03E1157B176B68F60064284D /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		03E1157D176B68F60064284D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -65,12 +75,6 @@
 		03E115A9176B68F60064284D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		03E115AB176B68F60064284D /* colordotTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = colordotTests.h; sourceTree = "<group>"; };
 		03E115AC176B68F60064284D /* colordotTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = colordotTests.m; sourceTree = "<group>"; };
-		03E115B6176B705D0064284D /* UIPaletteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIPaletteViewController.h; sourceTree = "<group>"; };
-		03E115B7176B705D0064284D /* UIPaletteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIPaletteViewController.m; sourceTree = "<group>"; };
-		03E115B9176B71210064284D /* UIPaletteView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIPaletteView.h; sourceTree = "<group>"; };
-		03E115BA176B71210064284D /* UIPaletteView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIPaletteView.m; sourceTree = "<group>"; };
-		03E115BC176B788F0064284D /* UIColorSwatch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIColorSwatch.h; sourceTree = "<group>"; };
-		03E115BD176B788F0064284D /* UIColorSwatch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIColorSwatch.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,20 +103,37 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		031631D317707CA1008FABE3 /* UIPalette */ = {
+		03A5556A177DAE2F00C513ED /* UIPalette */ = {
 			isa = PBXGroup;
 			children = (
-				03E115BC176B788F0064284D /* UIColorSwatch.h */,
-				03E115BD176B788F0064284D /* UIColorSwatch.m */,
-				031631D817708022008FABE3 /* UIColorPickerView.h */,
-				031631D917708022008FABE3 /* UIColorPickerView.m */,
-				03E115B9176B71210064284D /* UIPaletteView.h */,
-				03E115BA176B71210064284D /* UIPaletteView.m */,
-				03E115B6176B705D0064284D /* UIPaletteViewController.h */,
-				03E115B7176B705D0064284D /* UIPaletteViewController.m */,
-				031631D2176F653C008FABE3 /* UIPaletteViewDataSource.h */,
+				03A5556B177DAE4F00C513ED /* UIPaletteViewController.h */,
+				03A5556C177DAE4F00C513ED /* UIPaletteViewController.m */,
 			);
 			name = UIPalette;
+			sourceTree = "<group>";
+		};
+		03A55571177DB0E100C513ED /* SwatchList */ = {
+			isa = PBXGroup;
+			children = (
+				03A55572177DB6DF00C513ED /* UISwatchListView.h */,
+				03A55573177DB6DF00C513ED /* UISwatchListView.m */,
+				03A55575177DB79200C513ED /* UISwatch.h */,
+				03A55576177DB79200C513ED /* UISwatch.m */,
+				03A55578177DB7DA00C513ED /* UISwatchListDataSource.h */,
+			);
+			name = SwatchList;
+			sourceTree = "<group>";
+		};
+		03A55579177DCFED00C513ED /* ColorPicker */ = {
+			isa = PBXGroup;
+			children = (
+				03A5557A177DD01E00C513ED /* UIColorPickerViewController.h */,
+				03A5557B177DD01E00C513ED /* UIColorPickerViewController.m */,
+				03A5557D177DD3A400C513ED /* ColorPickerView.h */,
+				03A5557E177DD3A400C513ED /* ColorPickerView.m */,
+				03A555801781D8AB00C513ED /* UIColorPickerDelegate.h */,
+			);
+			name = ColorPicker;
 			sourceTree = "<group>";
 		};
 		03E1156F176B68F60064284D = {
@@ -149,7 +170,9 @@
 		03E11583176B68F60064284D /* colordot */ = {
 			isa = PBXGroup;
 			children = (
-				031631D317707CA1008FABE3 /* UIPalette */,
+				03A55579177DCFED00C513ED /* ColorPicker */,
+				03A55571177DB0E100C513ED /* SwatchList */,
+				03A5556A177DAE2F00C513ED /* UIPalette */,
 				03E1158C176B68F60064284D /* AppDelegate.h */,
 				03E1158D176B68F60064284D /* AppDelegate.m */,
 				03E11595176B68F60064284D /* colordot.xcdatamodeld */,
@@ -303,10 +326,11 @@
 				03E1158A176B68F60064284D /* main.m in Sources */,
 				03E1158E176B68F60064284D /* AppDelegate.m in Sources */,
 				03E11597176B68F60064284D /* colordot.xcdatamodeld in Sources */,
-				03E115B8176B705D0064284D /* UIPaletteViewController.m in Sources */,
-				03E115BB176B71210064284D /* UIPaletteView.m in Sources */,
-				03E115BE176B788F0064284D /* UIColorSwatch.m in Sources */,
-				031631DA17708022008FABE3 /* UIColorPickerView.m in Sources */,
+				03A5556D177DAE4F00C513ED /* UIPaletteViewController.m in Sources */,
+				03A55574177DB6DF00C513ED /* UISwatchListView.m in Sources */,
+				03A55577177DB79200C513ED /* UISwatch.m in Sources */,
+				03A5557C177DD01E00C513ED /* UIColorPickerViewController.m in Sources */,
+				03A5557F177DD3A400C513ED /* ColorPickerView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
