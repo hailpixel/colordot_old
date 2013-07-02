@@ -15,7 +15,8 @@
     ColorPickerView *pickerView;
     __weak id <UIColorPickerDelegate> delegate;
 }
-
 @property (nonatomic, weak) id <UIColorPickerDelegate> delegate;
+
+- (void)respondToTap:(UITapGestureRecognizer *) sender;
 
 @end

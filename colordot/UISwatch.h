@@ -7,11 +7,19 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "QuartzCore/QuartzCore.h"
 
 @interface UISwatch : UIView {
-    UIColor *swatchColor;
+    UIView *colorView;
+    UILabel *hexLabel;
+    
+    CGFloat _initialPanX;
 }
 
+@property (strong, nonatomic) UIColor *swatchColor;
+
 - (id)initWithColor:(UIColor *) color;
+- (void)setupSwatch;
+- (void)respondToSlide:(UIPanGestureRecognizer *)sender;
 
 @end

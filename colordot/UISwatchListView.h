@@ -13,6 +13,6 @@
 
 @property (weak, nonatomic) id <UISwatchListDataSource> dataSource;
 
-- (void)updateSwatches;
+- (void)updateLayoutToFrame:(CGRect)frame;
 
 @end

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		03332C211783113B007AF78F /* DirectionalPanGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 03332C201783113B007AF78F /* DirectionalPanGestureRecognizer.m */; };
 		03A5556D177DAE4F00C513ED /* UIPaletteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03A5556C177DAE4F00C513ED /* UIPaletteViewController.m */; };
 		03A55574177DB6DF00C513ED /* UISwatchListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 03A55573177DB6DF00C513ED /* UISwatchListView.m */; };
 		03A55577177DB79200C513ED /* UISwatch.m in Sources */ = {isa = PBXBuildFile; fileRef = 03A55576177DB79200C513ED /* UISwatch.m */; };
@@ -42,6 +43,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		03332C1F1783113B007AF78F /* DirectionalPanGestureRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DirectionalPanGestureRecognizer.h; sourceTree = "<group>"; };
+		03332C201783113B007AF78F /* DirectionalPanGestureRecognizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DirectionalPanGestureRecognizer.m; sourceTree = "<group>"; };
 		03A5556B177DAE4F00C513ED /* UIPaletteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIPaletteViewController.h; sourceTree = "<group>"; };
 		03A5556C177DAE4F00C513ED /* UIPaletteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIPaletteViewController.m; sourceTree = "<group>"; };
 		03A55572177DB6DF00C513ED /* UISwatchListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UISwatchListView.h; sourceTree = "<group>"; };
@@ -103,6 +106,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		03332C1B1783103F007AF78F /* Gestures */ = {
+			isa = PBXGroup;
+			children = (
+				03332C1F1783113B007AF78F /* DirectionalPanGestureRecognizer.h */,
+				03332C201783113B007AF78F /* DirectionalPanGestureRecognizer.m */,
+			);
+			name = Gestures;
+			sourceTree = "<group>";
+		};
 		03A5556A177DAE2F00C513ED /* UIPalette */ = {
 			isa = PBXGroup;
 			children = (
@@ -170,6 +182,7 @@
 		03E11583176B68F60064284D /* colordot */ = {
 			isa = PBXGroup;
 			children = (
+				03332C1B1783103F007AF78F /* Gestures */,
 				03A55579177DCFED00C513ED /* ColorPicker */,
 				03A55571177DB0E100C513ED /* SwatchList */,
 				03A5556A177DAE2F00C513ED /* UIPalette */,
@@ -331,6 +344,7 @@
 				03A55577177DB79200C513ED /* UISwatch.m in Sources */,
 				03A5557C177DD01E00C513ED /* UIColorPickerViewController.m in Sources */,
 				03A5557F177DD3A400C513ED /* ColorPickerView.m in Sources */,
+				03332C211783113B007AF78F /* DirectionalPanGestureRecognizer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

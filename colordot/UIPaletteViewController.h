@@ -16,9 +16,11 @@
     UISwatchListView *swatchListView;
     
     NSMutableArray *colors;
+    BOOL isPickerOpen;
 }
 
 - (void)layoutViews;
+- (void)respondToPaletteSwipe:(UISwipeGestureRecognizer *) sender;
 
 - (void)fetchRecords;
 - (void)addColor:(UIColor *)color;

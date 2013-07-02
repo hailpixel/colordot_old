@@ -21,18 +21,25 @@
     return self;
 }
 
-- (void)updateSwatches {
-    NSInteger i, count = [dataSource numberOfSwatches];
-    UISwatch *swatch;
-    CGFloat height = self.bounds.size.height, width = self.bounds.size.width;
+- (void)updateLayoutToFrame:(CGRect)frame {
+    NSInteger i, swatchCount = [[self subviews] count];
     
-    for(i = 0; i < count; i ++) {
-        swatch = [dataSource swatchForListRow:i];
-        swatch.frame = CGRectMake(0.0f, i * height / count, width, height / count);
-        swatch.autoresizingMask = (UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin);
+    if(swatchCount > 0) {
+        UISwatch *swatch;
+        CGFloat height = frame.size.height / swatchCount;
         
-        [self addSubview:swatch];
+        for(i = 0; i < swatchCount; i ++) {
+            swatch = (UISwatch *) [self subviews][i];
+            
+            [UIView animateWithDuration:0.3 animations:^{
+                swatch.frame = CGRectMake(0.0f, i * height, frame.size.width, height);
+            }];
+        }
     }
+    
+    [UIView animateWithDuration:0.3 animations:^{
+        self.frame = frame;
+    }];
 }
 
 /*
