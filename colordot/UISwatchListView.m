@@ -21,6 +21,27 @@
     return self;
 }
 
+#pragma todo this assumes the view is always starting empty
+- (void)reloadSwatches {
+    int i, swatchCount = [self.dataSource numberOfSwatches];
+    UISwatch *swatch;
+    
+    for(i = 0; i < swatchCount; i ++) {
+        swatch = [self.dataSource swatchForListRow:i];
+        [self addSubview:swatch];
+    }
+}
+
+- (void)updateSwatches {
+    NSUInteger i, swatchCount = [[self subviews] count];
+    UISwatch *swatch;
+    
+    for(i = 0; i < swatchCount; i ++) {
+        swatch = (UISwatch *) [self subviews][i];
+        swatch.representedRow = i;
+    }
+}
+
 - (void)updateLayoutToFrame:(CGRect)frame {
     NSInteger i, swatchCount = [[self subviews] count];
     
@@ -40,6 +61,10 @@
     [UIView animateWithDuration:0.3 animations:^{
         self.frame = frame;
     }];
+}
+
+- (UISwatch *)swatchAtRow:(NSUInteger)row {
+    return (UISwatch *) [self subviews][row];
 }
 
 /*

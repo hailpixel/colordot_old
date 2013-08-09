@@ -13,6 +13,7 @@
 #import "UISwatch.h"
 #import "ColorPickerView.h"
 #import "QuartzCore/QuartzCore.h"
+#import "ColorObject.h"
 
 @implementation UIPaletteViewController
 
@@ -32,11 +33,8 @@
     
     self.view = container;
     container.backgroundColor = [UIColor redColor];
-    
-    [self.view addSubview:[pickerViewController view]];
-    isPickerOpen = YES;
 
-    swatchListView = [[UISwatchListView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, appFrame.size.width, 0.0f)];
+    swatchListView = [[UISwatchListView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, appFrame.size.width, appFrame.size.height)];
     swatchListView.dataSource = (UIViewController <UISwatchListDataSource> *) self;
     [self.view addSubview:swatchListView];
     
@@ -52,10 +50,13 @@
 {
     [super viewDidLoad];
     
-    UIView *pickerView = [pickerViewController view];
-    pickerView.frame = self.view.bounds;
+    self.colors = [[self.palette colorsArray] mutableCopy];
     
-    [self fetchRecords];
+    [swatchListView reloadSwatches];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [self layoutViews];
 }
 
 - (void)didReceiveMemoryWarning
@@ -65,14 +66,12 @@
 }
 
 - (void)respondToPaletteSwipe:(UISwipeGestureRecognizer *) sender {
-    NSLog(@"Yaaa");
     if(! isPickerOpen) {
         CGRect bounds = self.view.bounds;
         [pickerViewController view].frame = CGRectMake(0.0f, bounds.size.height, bounds.size.width, 0.0f);
         [self.view addSubview:[pickerViewController view]];
         
-        ColorPickerView *pickerView = (ColorPickerView *)[pickerViewController view];
-        [pickerView setColor:[UIColor blackColor]];
+        [pickerViewController.pickerView setColor:[UIColor blackColor]];
         
         [UIView animateWithDuration:0.3f animations:^{
             [pickerViewController view].frame = CGRectMake(0.0f, bounds.size.height - 320.0f, bounds.size.width, 320.0f);
@@ -87,12 +86,12 @@
 - (void)layoutViews {
     CGRect paletteRect, bounds = swatchListView.bounds;
     
-    NSUInteger sections = [colors count];
+    NSUInteger sections = [self.colors count];
     
     if(sections > 0) {
         CGFloat itemHeight = bounds.size.height / sections;
         
-        paletteRect = CGRectMake(0.0f, 0.0f, bounds.size.width, itemHeight * [colors count]);
+        paletteRect = CGRectMake(0.0f, 0.0f, bounds.size.width, itemHeight * [self.colors count]);
         [swatchListView updateLayoutToFrame:paletteRect];
     }
 }
@@ -100,12 +99,12 @@
 
 #pragma mark UISwatchListDataSource methods
 - (NSUInteger)numberOfSwatches {
-    return [colors count];
+    return [self.colors count];
 }
 
 - (UISwatch *)swatchForListRow:(NSUInteger)row {
-    UIColor *color = [colors objectAtIndex:row];
-    UISwatch *swatch = [[UISwatch alloc] initWithColor:color];
+    ColorObject *color = [self.colors objectAtIndex:row];
+    UISwatch *swatch = [[UISwatch alloc] initWithColor:[color uiColor]];
     return swatch;
 }
 
@@ -113,10 +112,11 @@
 - (void)colorPicked:(UIColor *)color {
     [self addColor:color];
     
+    // TODO: .. should we adding it to the view here..?
     UISwatch *newSwatch = [[UISwatch alloc] initWithColor:color];
     newSwatch.frame = [pickerViewController view].frame;
-    newSwatch.layer.zPosition = 10;
-    
+    newSwatch.representedRow = [self.palette.colors count] - 1;
+    newSwatch.delegate = self;
     [swatchListView addSubview:newSwatch];
     swatchListView.frame = self.view.bounds;
     
@@ -127,12 +127,39 @@
 }
 
 #pragma mark Data management
-- (void)fetchRecords {
-    colors = [[NSMutableArray alloc] init];
+- (void)addColor:(UIColor *)color {
+    
+    ColorObject *newColor = (ColorObject *) [NSEntityDescription insertNewObjectForEntityForName:@"Color" inManagedObjectContext:self.palette.managedObjectContext];
+    
+    CGFloat h, s, b, a;
+    [color getHue:&h saturation:&s brightness:&b alpha:&a];
+
+    newColor.palette = self.palette;
+    newColor.order = [NSNumber numberWithInt:[self.colors count]];
+    newColor.hue = [NSNumber numberWithFloat:h];
+    newColor.saturation = [NSNumber numberWithFloat:s];
+    newColor.brightness = [NSNumber numberWithFloat:b];
+
+    NSError *error;
+    if(! [self.palette.managedObjectContext save:&error]) {
+        NSLog(@"Problem saving new color in palette view");
+    }
+    
+    [self.colors addObject:newColor];
 }
 
-- (void)addColor:(UIColor *)color {
-    [colors addObject:color];
+#pragma mark UISwatchListDelegate methods
+
+- (void)swatchListView:(ColorPickerView *)listView swatchEditedAtRow:(NSUInteger)row {
+    
 }
+
+- (void)swatchListView:(ColorPickerView *)listView swatchRemovedAtRow:(NSUInteger)row {
+    UISwatch *swatchToRemove = [swatchListView swatchAtRow:row];
+    [swatchToRemove removeFromSuperview];
+    [swatchListView updateSwatches];
+    [self layoutViews];
+}
+
 
 @end

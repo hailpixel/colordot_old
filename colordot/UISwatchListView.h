@@ -8,11 +8,18 @@
 
 #import <UIKit/UIKit.h>
 #import "UISwatchListDataSource.h"
+#import "UISwatchListDelegate.h"
+@class UISwatch;
 
 @interface UISwatchListView : UIView
 
 @property (weak, nonatomic) id <UISwatchListDataSource> dataSource;
+@property (weak, nonatomic) id <UISwatchListDelegate> delegate;
+
+- (void)reloadSwatches;
+- (void)updateSwatches;
 
 - (void)updateLayoutToFrame:(CGRect)frame;
+- (UISwatch *)swatchAtRow:(NSUInteger)row;
 
 @end

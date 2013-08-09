@@ -8,15 +8,24 @@
 
 #import <UIKit/UIKit.h>
 #import "QuartzCore/QuartzCore.h"
+#import "UISwatchListDelegate.h"
+
+typedef enum {
+    SwatchPullOptionEdit,
+    SwatchPullOptionRemove
+} SwatchPullOptions;
 
 @interface UISwatch : UIView {
     UIView *colorView;
     UILabel *hexLabel;
     
-    CGFloat _initialPanX;
+    BOOL _pullThresholdReached;
+    SwatchPullOptions _pullOptionType;
 }
 
+@property NSUInteger representedRow;
 @property (strong, nonatomic) UIColor *swatchColor;
+@property (weak, nonatomic) id <UISwatchListDelegate> delegate;
 
 - (id)initWithColor:(UIColor *) color;
 - (void)setupSwatch;

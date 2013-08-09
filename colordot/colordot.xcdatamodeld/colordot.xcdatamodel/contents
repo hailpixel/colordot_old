@@ -1,4 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model name="Test1.xcdatamodel" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1" systemVersion="11A491" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
-    <elements/>
+<model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="2061" systemVersion="12E55" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="Color" representedClassName="ColorObject" syncable="YES">
+        <attribute name="brightness" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="hue" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="order" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="saturation" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <relationship name="palette" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Palette" inverseName="colors" inverseEntity="Palette" syncable="YES"/>
+    </entity>
+    <entity name="Palette" representedClassName="PaletteObject" syncable="YES">
+        <attribute name="created" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="colors" optional="YES" toMany="YES" maxCount="6" deletionRule="Nullify" destinationEntity="Color" inverseName="palette" inverseEntity="Color" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Color" positionX="162" positionY="351" width="128" height="120"/>
+        <element name="Palette" positionX="160" positionY="192" width="128" height="88"/>
+    </elements>
 </model>

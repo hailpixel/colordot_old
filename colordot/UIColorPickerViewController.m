@@ -9,6 +9,7 @@
 #import "UIColorPickerViewController.h"
 #import "ColorPickerView.h"
 
+
 @implementation UIColorPickerViewController
 @synthesize delegate;
 
@@ -16,23 +17,48 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+        self.pickerMode = UIColorPickerTypeCamera;
+        
+        _lastHue = 0.5f;
+        _lastSaturation = 0.5f;
+        _lastBrightness = 0.5f;
     }
     return self;
 }
 
 - (void)loadView {
-    pickerView = [[ColorPickerView alloc] init];
-    self.view = pickerView;
+    CGRect appFrame = [[UIScreen mainScreen] bounds];
+    
+    UIView *mainView = [[UIView alloc] initWithFrame:appFrame];
+    mainView.autoresizesSubviews = YES;
+    self.view = mainView;
+    
+    self.pickerView = [[ColorPickerView alloc] initWithFrame:appFrame];
+    self.pickerView.autoresizingMask = (UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight);
+    [self.view addSubview:self.pickerView];
+    
+    UIPanGestureRecognizer *panRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(respondToPan:)];
+    panRecognizer.maximumNumberOfTouches = 1;
+    panRecognizer.minimumNumberOfTouches = 1;
+    [self.pickerView addGestureRecognizer:panRecognizer];
+    
+    UIPinchGestureRecognizer *pinchRecognizer = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(respondToPinch:)];
+    [self.pickerView addGestureRecognizer:pinchRecognizer];
     
     UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(respondToTap:)];
     tapRecognizer.numberOfTapsRequired = 1;
-    [self.view addGestureRecognizer:tapRecognizer];
+    [self.pickerView addGestureRecognizer:tapRecognizer];
+    
+//    self.cameraView = [[UIView alloc] initWithFrame:appFrame];
+//    self.cameraView.backgroundColor = [UIColor greenColor];
+//    [self.view addSubview:cameraView];
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    lastPickedColor = [UIColor colorWithHue:_lastHue saturation:_lastSaturation brightness:_lastBrightness alpha:1.0f];
+    [self.pickerView setColor:lastPickedColor];
 }
 
 - (void)didReceiveMemoryWarning
@@ -41,24 +67,30 @@
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark Interaction for color picker
-- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
-    [super touchesMoved:touches withEvent:event];
-    
-    UITouch *touch = [touches anyObject];
-    CGPoint location = [touch locationInView:self.view];
+#pragma mark Interaction for Finger Mode color picker
+
+- (void)respondToPan:(UIPanGestureRecognizer *)sender {
+    CGPoint location = [sender locationInView:self.view];
     CGRect bounds = self.view.bounds;
-    CGFloat hue, brightness;
     
-    hue = location.x / bounds.size.width;
-    brightness = location.y / bounds.size.height;
+    _lastHue = location.x / bounds.size.width;
+    _lastBrightness = location.y / bounds.size.height;
     
-    lastPickedColor = [UIColor colorWithHue:hue saturation:0.5 brightness:brightness alpha:1.0f];
-    [pickerView setColor:lastPickedColor];
+    lastPickedColor = [UIColor colorWithHue:_lastHue saturation:_lastSaturation brightness:_lastBrightness alpha:1.0f];
+    [self.pickerView setColor:lastPickedColor];
 }
 
 - (void)respondToTap:(UITapGestureRecognizer *) sender {
     [delegate colorPicked:lastPickedColor];
 }
+
+- (void)respondToPinch:(UIPinchGestureRecognizer *)sender {
+    _lastSaturation = MIN(1.0f, MAX(0.0f, (log10f([sender scale]) + 0.7f * 0.8f)));
+    
+    lastPickedColor = [UIColor colorWithHue:_lastHue saturation:_lastSaturation brightness:_lastBrightness alpha:1.0f];
+    [self.pickerView setColor:lastPickedColor];
+}
+
+#pragma mark Camera Mode setup and delegate methods
 
 @end

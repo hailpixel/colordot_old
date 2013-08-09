@@ -15,9 +15,11 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
+        self.autoresizesSubviews = YES;
+        
         hexLabel = [[UILabel alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 100.0f, 100.0f)];
         hexLabel.autoresizingMask = (UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin);
-        
+        hexLabel.center = self.center;
         hexLabel.backgroundColor = [UIColor blackColor];
         hexLabel.textColor = [UIColor whiteColor];
         hexLabel.textAlignment = NSTextAlignmentCenter;
@@ -35,13 +37,5 @@
     [hexLabel setText:[NSString stringWithFormat:@"#%.2X%.2X%.2X", (NSInteger)(r * 255), (NSInteger)(g * 255), (NSInteger)(b * 255)]];
 }
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
-{
-    // Drawing code
-}
-*/
 
 @end

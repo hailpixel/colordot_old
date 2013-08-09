@@ -7,7 +7,7 @@
 //
 
 #import "AppDelegate.h"
-#import "UIPaletteViewController.h"
+#import "PaletteTableViewController.h"
 
 @implementation AppDelegate
 
@@ -19,8 +19,13 @@
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
-    UIPaletteViewController *paletteViewController = [[UIPaletteViewController alloc] init];
-    self.window.rootViewController = paletteViewController;
+    PaletteTableViewController *paletteController = [[PaletteTableViewController alloc] initWithStyle:UITableViewStylePlain];
+    paletteController.managedObjectContext = self.managedObjectContext;
+    
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:paletteController];
+    
+    self.window.rootViewController = navController;
+    [self.window addSubview:[navController view]];
     
     [self.window makeKeyAndVisible];
     return YES;

@@ -10,13 +10,21 @@
 #import "UIColorPickerDelegate.h"
 @class ColorPickerView;
 
-@interface UIColorPickerViewController : UIViewController {
-    UIColor *lastPickedColor;
-    ColorPickerView *pickerView;
-    __weak id <UIColorPickerDelegate> delegate;
-}
-@property (nonatomic, weak) id <UIColorPickerDelegate> delegate;
+typedef enum {
+    UIColorPickerTypeFinger,
+    UIColorPickerTypeCamera
+} UIColorPickerModes;
 
-- (void)respondToTap:(UITapGestureRecognizer *) sender;
+@interface UIColorPickerViewController : UIViewController {
+    CGFloat _lastHue;
+    CGFloat _lastBrightness;
+    CGFloat _lastSaturation;
+    CGFloat _saturationOnPinchStart;
+    UIColor *lastPickedColor;
+}
+@property (nonatomic, strong) ColorPickerView *pickerView;
+@property (nonatomic, strong) UIView *cameraView;
+@property (nonatomic, weak) id <UIColorPickerDelegate> delegate;
+@property UIColorPickerModes pickerMode;
 
 @end
