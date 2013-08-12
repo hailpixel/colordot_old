@@ -12,11 +12,14 @@
 		0344F84B17B2F934007A008E /* PaletteObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 0344F84A17B2F934007A008E /* PaletteObject.m */; };
 		036F9BD9179066CF00382EE5 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 036F9BD8179066CF00382EE5 /* AVFoundation.framework */; };
 		037F508817B27E1C00498766 /* PaletteTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 037F508717B27E1C00498766 /* PaletteTableViewController.m */; };
-		03A5556D177DAE4F00C513ED /* UIPaletteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03A5556C177DAE4F00C513ED /* UIPaletteViewController.m */; };
+		03A5556D177DAE4F00C513ED /* PaletteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03A5556C177DAE4F00C513ED /* PaletteViewController.m */; };
 		03A55574177DB6DF00C513ED /* UISwatchListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 03A55573177DB6DF00C513ED /* UISwatchListView.m */; };
 		03A55577177DB79200C513ED /* UISwatch.m in Sources */ = {isa = PBXBuildFile; fileRef = 03A55576177DB79200C513ED /* UISwatch.m */; };
 		03A5557C177DD01E00C513ED /* UIColorPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03A5557B177DD01E00C513ED /* UIColorPickerViewController.m */; };
 		03A5557F177DD3A400C513ED /* ColorPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 03A5557E177DD3A400C513ED /* ColorPickerView.m */; };
+		03AAEA4C17B5304B00BAD490 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03AAEA4B17B5304B00BAD490 /* QuartzCore.framework */; };
+		03AB041217B91BB900B7C79A /* PaletteView.m in Sources */ = {isa = PBXBuildFile; fileRef = 03AB041117B91BB900B7C79A /* PaletteView.m */; };
+		03CDEEDB17B55C65001351AF /* ColorDotViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03CDEEDA17B55C65001351AF /* ColorDotViewController.m */; };
 		03E1157C176B68F60064284D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03E1157B176B68F60064284D /* UIKit.framework */; };
 		03E1157E176B68F60064284D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03E1157D176B68F60064284D /* Foundation.framework */; };
 		03E11580176B68F60064284D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03E1157F176B68F60064284D /* CoreGraphics.framework */; };
@@ -62,8 +65,8 @@
 		036F9BD8179066CF00382EE5 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		037F508617B27E1C00498766 /* PaletteTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaletteTableViewController.h; sourceTree = "<group>"; };
 		037F508717B27E1C00498766 /* PaletteTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaletteTableViewController.m; sourceTree = "<group>"; };
-		03A5556B177DAE4F00C513ED /* UIPaletteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIPaletteViewController.h; sourceTree = "<group>"; };
-		03A5556C177DAE4F00C513ED /* UIPaletteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIPaletteViewController.m; sourceTree = "<group>"; };
+		03A5556B177DAE4F00C513ED /* PaletteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaletteViewController.h; sourceTree = "<group>"; };
+		03A5556C177DAE4F00C513ED /* PaletteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaletteViewController.m; sourceTree = "<group>"; };
 		03A55572177DB6DF00C513ED /* UISwatchListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UISwatchListView.h; sourceTree = "<group>"; };
 		03A55573177DB6DF00C513ED /* UISwatchListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UISwatchListView.m; sourceTree = "<group>"; };
 		03A55575177DB79200C513ED /* UISwatch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UISwatch.h; sourceTree = "<group>"; };
@@ -74,6 +77,11 @@
 		03A5557D177DD3A400C513ED /* ColorPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorPickerView.h; sourceTree = "<group>"; };
 		03A5557E177DD3A400C513ED /* ColorPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorPickerView.m; sourceTree = "<group>"; };
 		03A555801781D8AB00C513ED /* UIColorPickerDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIColorPickerDelegate.h; sourceTree = "<group>"; };
+		03AAEA4B17B5304B00BAD490 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		03AB041017B91BB900B7C79A /* PaletteView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaletteView.h; sourceTree = "<group>"; };
+		03AB041117B91BB900B7C79A /* PaletteView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaletteView.m; sourceTree = "<group>"; };
+		03CDEED917B55C65001351AF /* ColorDotViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorDotViewController.h; sourceTree = "<group>"; };
+		03CDEEDA17B55C65001351AF /* ColorDotViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorDotViewController.m; sourceTree = "<group>"; };
 		03E11578176B68F60064284D /* colordot.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = colordot.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		03E1157B176B68F60064284D /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		03E1157D176B68F60064284D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -113,6 +121,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				03AAEA4C17B5304B00BAD490 /* QuartzCore.framework in Frameworks */,
 				036F9BD9179066CF00382EE5 /* AVFoundation.framework in Frameworks */,
 				03E1157C176B68F60064284D /* UIKit.framework in Frameworks */,
 				03E1157E176B68F60064284D /* Foundation.framework in Frameworks */,
@@ -164,13 +173,15 @@
 			name = CoreData;
 			sourceTree = "<group>";
 		};
-		03A5556A177DAE2F00C513ED /* UIPalette */ = {
+		03A5556A177DAE2F00C513ED /* PaletteView */ = {
 			isa = PBXGroup;
 			children = (
-				03A5556B177DAE4F00C513ED /* UIPaletteViewController.h */,
-				03A5556C177DAE4F00C513ED /* UIPaletteViewController.m */,
+				03A5556B177DAE4F00C513ED /* PaletteViewController.h */,
+				03A5556C177DAE4F00C513ED /* PaletteViewController.m */,
+				03AB041017B91BB900B7C79A /* PaletteView.h */,
+				03AB041117B91BB900B7C79A /* PaletteView.m */,
 			);
-			name = UIPalette;
+			name = PaletteView;
 			sourceTree = "<group>";
 		};
 		03A55571177DB0E100C513ED /* SwatchList */ = {
@@ -201,6 +212,7 @@
 		03E1156F176B68F60064284D = {
 			isa = PBXGroup;
 			children = (
+				03AAEA4B17B5304B00BAD490 /* QuartzCore.framework */,
 				03E11583176B68F60064284D /* colordot */,
 				03E115A5176B68F60064284D /* colordotTests */,
 				03E1157A176B68F60064284D /* Frameworks */,
@@ -239,9 +251,11 @@
 				03332C1B1783103F007AF78F /* Gestures */,
 				03A55579177DCFED00C513ED /* ColorPicker */,
 				03A55571177DB0E100C513ED /* SwatchList */,
-				03A5556A177DAE2F00C513ED /* UIPalette */,
+				03A5556A177DAE2F00C513ED /* PaletteView */,
 				03E1158C176B68F60064284D /* AppDelegate.h */,
 				03E1158D176B68F60064284D /* AppDelegate.m */,
+				03CDEED917B55C65001351AF /* ColorDotViewController.h */,
+				03CDEEDA17B55C65001351AF /* ColorDotViewController.m */,
 				03E11595176B68F60064284D /* colordot.xcdatamodeld */,
 				03E11584176B68F60064284D /* Supporting Files */,
 			);
@@ -411,7 +425,7 @@
 				03E1158A176B68F60064284D /* main.m in Sources */,
 				03E1158E176B68F60064284D /* AppDelegate.m in Sources */,
 				03E11597176B68F60064284D /* colordot.xcdatamodeld in Sources */,
-				03A5556D177DAE4F00C513ED /* UIPaletteViewController.m in Sources */,
+				03A5556D177DAE4F00C513ED /* PaletteViewController.m in Sources */,
 				03A55574177DB6DF00C513ED /* UISwatchListView.m in Sources */,
 				03A55577177DB79200C513ED /* UISwatch.m in Sources */,
 				03A5557C177DD01E00C513ED /* UIColorPickerViewController.m in Sources */,
@@ -425,6 +439,8 @@
 				03E5A4E417B5039700A3A0F9 /* FoldLeaf.m in Sources */,
 				03E5A4E517B5039700A3A0F9 /* FoldView.m in Sources */,
 				03E5A4E617B5039700A3A0F9 /* ScreenshotView.m in Sources */,
+				03CDEEDB17B55C65001351AF /* ColorDotViewController.m in Sources */,
+				03AB041217B91BB900B7C79A /* PaletteView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -15,6 +15,7 @@
 @property (nonatomic, strong) UIView *contentView;
 @property (nonatomic, strong) FoldLeaf  *leftLeafView, *rightLeafView;
 @property (nonatomic) FoldViewType foldType;
+@property (nonatomic) FoldViewState state;
 
 - (id)initWithFrame:(CGRect)frame andFoldType:(FoldViewType)type;
 

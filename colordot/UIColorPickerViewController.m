@@ -48,10 +48,6 @@
     UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(respondToTap:)];
     tapRecognizer.numberOfTapsRequired = 1;
     [self.pickerView addGestureRecognizer:tapRecognizer];
-    
-//    self.cameraView = [[UIView alloc] initWithFrame:appFrame];
-//    self.cameraView.backgroundColor = [UIColor greenColor];
-//    [self.view addSubview:cameraView];
 }
 
 - (void)viewDidLoad

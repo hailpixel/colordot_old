@@ -7,7 +7,7 @@
 //
 
 #import "AppDelegate.h"
-#import "PaletteTableViewController.h"
+#import "ColorDotViewController.h"
 
 @implementation AppDelegate
 
@@ -19,13 +19,11 @@
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
-    PaletteTableViewController *paletteController = [[PaletteTableViewController alloc] initWithStyle:UITableViewStylePlain];
-    paletteController.managedObjectContext = self.managedObjectContext;
+    ColorDotViewController *rvc = [[ColorDotViewController alloc] init];
+    rvc.managedObjectContext = self.managedObjectContext;
     
-    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:paletteController];
-    
-    self.window.rootViewController = navController;
-    [self.window addSubview:[navController view]];
+    self.window.rootViewController = rvc;
+    [self.window addSubview:rvc.view];
     
     [self.window makeKeyAndVisible];
     return YES;

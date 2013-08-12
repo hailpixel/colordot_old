@@ -19,7 +19,6 @@
 - (void)reloadSwatches;
 - (void)updateSwatches;
 
-- (void)updateLayoutToFrame:(CGRect)frame;
 - (UISwatch *)swatchAtRow:(NSUInteger)row;
 
 @end

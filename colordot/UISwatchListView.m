@@ -16,9 +16,13 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        // Initialization code
+        self.backgroundColor = [UIColor orangeColor];
     }
     return self;
+}
+
+- (UISwatch *)swatchAtRow:(NSUInteger)row {
+    return (UISwatch *) [self subviews][row];
 }
 
 #pragma todo this assumes the view is always starting empty
@@ -26,10 +30,16 @@
     int i, swatchCount = [self.dataSource numberOfSwatches];
     UISwatch *swatch;
     
+    if([self.subviews count] > 0) {
+        [self.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+    }
+    
     for(i = 0; i < swatchCount; i ++) {
         swatch = [self.dataSource swatchForListRow:i];
         [self addSubview:swatch];
     }
+    
+    [self layoutSwatches];
 }
 
 - (void)updateSwatches {
@@ -40,40 +50,27 @@
         swatch = (UISwatch *) [self subviews][i];
         swatch.representedRow = i;
     }
+    
+    [self layoutSwatches];
 }
 
-- (void)updateLayoutToFrame:(CGRect)frame {
+- (void)setFrame:(CGRect)frame {
+    super.frame = frame;
+    [self layoutSwatches];
+}
+
+- (void)layoutSwatches {
     NSInteger i, swatchCount = [[self subviews] count];
     
     if(swatchCount > 0) {
         UISwatch *swatch;
-        CGFloat height = frame.size.height / swatchCount;
+        CGFloat height = self.frame.size.height / swatchCount;
         
         for(i = 0; i < swatchCount; i ++) {
             swatch = (UISwatch *) [self subviews][i];
-            
-            [UIView animateWithDuration:0.3 animations:^{
-                swatch.frame = CGRectMake(0.0f, i * height, frame.size.width, height);
-            }];
+            swatch.frame = CGRectMake(0.0f, i * height, self.frame.size.width, height);
         }
     }
-    
-    [UIView animateWithDuration:0.3 animations:^{
-        self.frame = frame;
-    }];
 }
-
-- (UISwatch *)swatchAtRow:(NSUInteger)row {
-    return (UISwatch *) [self subviews][row];
-}
-
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
-{
-    // Drawing code
-}
-*/
 
 @end

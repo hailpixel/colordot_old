@@ -22,6 +22,7 @@
     if (self) {
         
         _foldType = type;
+        _state = FoldViewStateClosed;
         
         _contentView = [[ScreenshotView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
         _contentView.backgroundColor = [UIColor clearColor];
@@ -80,6 +81,16 @@
     [self.rightLeafView.layer setContents:(__bridge id)rightImageRef];
 }
 
+- (void)unfoldWithOffset:(float)offset {
+    CGFloat fraction = offset / self.frame.size.width;
+    
+    if(fraction < 0) fraction *= -1.0f;
+    if(fraction > 1) fraction = 1.0f;
+    
+    [self setHiddenStatesFromFraction:fraction];
+    [self unfoldViewToFraction:fraction];
+}
+
 - (void)unfoldViewToFraction:(float)fraction {
     float delta = asinf(fraction);
     
@@ -104,14 +115,32 @@
     _leftLeafView.gradient.opacity = 1.0f - fraction;
 }
 
-- (void)unfoldWithOffset:(float)offset {
-    _contentView.hidden = YES;
-    CGFloat fraction = offset / self.frame.size.width;
-    
-    if(fraction < 0) fraction *= -1.0f;
-    if(fraction > 1) fraction = 1.0f;
-    
-    [self unfoldViewToFraction:fraction];
+- (void)setHiddenStatesFromFraction:(float)fraction {
+    if(self.state == FoldViewStateClosed && fraction > 0) {
+        [self drawImageOnLeaves];
+        self.state = FoldViewStateTransition;
+        self.contentView.hidden = YES;
+        [self hideLeaves:NO];
+    } else if(self.state == FoldViewStateOpen && fraction < 1) {
+        self.state = FoldViewStateTransition;
+        self.contentView.hidden = YES;
+        [self hideLeaves:NO];
+    } else {
+        if(fraction == 0) {
+            self.state = FoldViewStateClosed;
+            self.contentView.hidden = NO;
+            [self hideLeaves:NO];
+        } else if(fraction == 1) {
+            self.state = FoldViewStateOpen;
+            self.contentView.hidden = NO;
+            [self hideLeaves:YES];
+        }
+    }
+}
+
+- (void)hideLeaves:(BOOL)isHidden {
+    self.leftLeafView.hidden = isHidden;
+    self.rightLeafView.hidden = isHidden;
 }
 
 @end

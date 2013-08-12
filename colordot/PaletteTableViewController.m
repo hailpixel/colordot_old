@@ -8,7 +8,7 @@
 
 #import "PaletteTableViewController.h"
 #import "PaletteObject.h"
-#import "UIPaletteViewController.h"
+#import "PaletteViewController.h"
 
 @interface PaletteTableViewController ()
 
@@ -31,8 +31,6 @@
     
     UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addPalette:)];
     self.navigationItem.rightBarButtonItem = addButton;
-    
-    [self fetchPalettes];
 }
 
 - (void)didReceiveMemoryWarning
@@ -70,7 +68,7 @@
     
     [self.palettes insertObject:newPalette atIndex:0];
     
-    UIPaletteViewController *paletteViewController = [[UIPaletteViewController alloc] init];
+    PaletteViewController *paletteViewController = [[PaletteViewController alloc] init];
     paletteViewController.palette = newPalette;
     
     [self.tableView reloadData];
@@ -86,7 +84,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [self.palettes count];
+    return [self.palettes count] + 1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -98,31 +96,20 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier];
     }
     
-    PaletteObject *palette = [self.palettes objectAtIndex:[indexPath row]];
-    
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    dateFormatter.dateStyle = NSDateFormatterShortStyle;
-    dateFormatter.timeStyle = NSDateFormatterShortStyle;
-    
-    cell.textLabel.text = [dateFormatter stringFromDate:palette.created];
+    if(indexPath.row > 0) {
+
+        PaletteObject *palette = [self.palettes objectAtIndex:(indexPath.row - 1)];
+
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        dateFormatter.dateStyle = NSDateFormatterShortStyle;
+        dateFormatter.timeStyle = NSDateFormatterShortStyle;
+
+        cell.textLabel.text = [dateFormatter stringFromDate:palette.created];
+    } else {
+        cell.textLabel.text = @"New Palette";
+    }
     
     return cell;
-}
-
-
-#pragma mark - Table view delegate
-
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return YES;
-}
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [tableView deselectRowAtIndexPath:indexPath animated:NO];
-    
-    UIPaletteViewController *paletteViewController = [[UIPaletteViewController alloc] init];
-    paletteViewController.palette = [self.palettes objectAtIndex:[indexPath row]];
-    [self.navigationController pushViewController:paletteViewController animated:YES];
 }
 
 

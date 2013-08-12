@@ -17,11 +17,17 @@ typedef enum {
     FoldingStateTransition = 3
 } FoldingViewState;
 
-// States for FoldView
+// Types for FoldView
 typedef enum {
     FoldViewTypeLeft = 0,
     FoldViewTypeRight = 1
 } FoldViewType;
+
+typedef enum {
+    FoldViewStateClosed = 0,
+    FoldViewStateOpen = 1,
+    FoldViewStateTransition = 2,
+} FoldViewState;
 
 // Direction flags
 typedef enum {
