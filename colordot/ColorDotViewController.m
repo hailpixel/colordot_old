@@ -28,6 +28,8 @@
         _paletteTableController = [[PaletteTableViewController alloc] initWithStyle:UITableViewStylePlain];
         _paletteTableController.tableView.delegate = self;
         [self setLeftViewController:self.paletteTableController width:220.0f];
+        
+        self.foldingView.activeArea = CGRectMake(0.0f, 0.0f, 50.0f, self.foldingView.frame.size.height);
     }
     return self;
 }
@@ -38,6 +40,11 @@
     self.paletteTableController.managedObjectContext = managedObjectContext;
     [self.paletteTableController fetchPalettes];
     [self.paletteTableController.tableView reloadData];
+    
+    //TODO: We need to use the last palette being worked on,
+    // or if there are none, create a new a new VALID palette object.
+    self.paletteController.palette = self.paletteTableController.palettes[0];
+    
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {

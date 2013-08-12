@@ -24,7 +24,7 @@
 @property (strong, nonatomic) FoldView *leftView, *rightView;
 
 // Optional rectangle to restric dragging to the new view
-@property (nonatomic, assign) CGRect draggingRect;
+@property (nonatomic, assign) CGRect activeArea;
 
 - (void)setCenterContentView:(UIView *)view;
 - (void)setLeftFoldView:(UIView *)view;

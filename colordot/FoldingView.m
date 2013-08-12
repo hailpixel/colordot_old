@@ -197,6 +197,12 @@
 
 #pragma mark Gesture recognizer delegate methods
 - (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer {
+    CGPoint point = [gestureRecognizer locationInView:self.contentView];
+
+    if(! CGRectIsEmpty(self.activeArea) && ! CGRectContainsPoint(self.activeArea, point)) {
+        return NO;
+    }
+    
     return YES;
 }
 
