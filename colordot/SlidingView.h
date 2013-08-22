@@ -20,7 +20,7 @@ typedef enum {
     SlidingViewDirectionHorizontal
 } SlidingViewDirection;
 
-@interface SlidingView : UIView
+@interface SlidingView : UIView <UIGestureRecognizerDelegate>
 
 @property (nonatomic, strong) UIView *centerView, *rightView;
 

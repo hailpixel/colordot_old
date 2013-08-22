@@ -48,11 +48,24 @@
     
     UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(respondToTap:)];
     tapRecognizer.numberOfTapsRequired = 1;
+    tapRecognizer.delegate = self;
     [self.pickerView addGestureRecognizer:tapRecognizer];
     
     self.cameraView = [[UIView alloc] initWithFrame:appFrame];
     self.cameraView.backgroundColor = [UIColor redColor];
     self.mainView.rightView = self.cameraView;
+    
+    self.cameraButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    self.cameraButton.frame = CGRectMake(self.pickerView.bounds.size.width - 46.0f, (self.pickerView.bounds.size.width / 2.0f) - 15.0f, 30.0f, 30.0f);
+    self.cameraButton.titleLabel.text = @"C";
+    [self.cameraButton addTarget:self action:@selector(onCameraButtonTap) forControlEvents:UIControlEventTouchUpInside];
+    [self.pickerView addSubview:self.cameraButton];
+    
+    self.fingerButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    self.fingerButton.frame = CGRectMake(16.0f, (self.cameraView.bounds.size.width / 2.0f) - 15.0f, 30.0f, 30.0f);
+    self.fingerButton.titleLabel.text = @"F";
+    [self.fingerButton addTarget:self action:@selector(onFingerButtonTap) forControlEvents:UIControlEventTouchUpInside];
+    [self.cameraView addSubview:self.fingerButton];
 }
 
 - (void)viewDidLoad
@@ -92,9 +105,23 @@
     [self.pickerView setColor:lastPickedColor];
 }
 
+#pragma mark Tapping between views
+- (void)onCameraButtonTap {
+    self.mainView.state = SlidingViewRightOpen;
+}
+
+- (void)onFingerButtonTap {
+    self.mainView.state = SlidingViewDefault;
+}
+
 #pragma mark Gesture delegate methods
 - (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer {
-    return NO;
+    CGPoint point = [gestureRecognizer locationInView:self.pickerView];
+    
+    if(CGRectContainsPoint(self.cameraButton.frame, point)) {
+        return NO;
+    }
+    return YES;
 }
 
 

@@ -31,6 +31,7 @@ typedef enum {
 @property (nonatomic, strong) SlidingView *mainView;
 @property (nonatomic, strong) ColorPickerView *pickerView;
 @property (nonatomic, strong) UIView *cameraView;
+@property (nonatomic, strong) UIButton *cameraButton, *fingerButton;
 @property (nonatomic, weak) id <PickerDelegate> delegate;
 @property UIColorPickerModes pickerMode;
 
