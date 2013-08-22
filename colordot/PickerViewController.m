@@ -7,8 +7,6 @@
 //
 
 #import "PickerViewController.h"
-#import "ColorPickerView.h"
-
 
 @implementation PickerViewController
 @synthesize delegate;
@@ -28,12 +26,13 @@
 
 - (void)loadView {
     CGRect appFrame = [[UIScreen mainScreen] bounds];
+    CGRect pickerFrame = CGRectMake(0.0f, 0.0f, appFrame.size.width, appFrame.size.width);
     
-    self.mainView = [[SlidingView alloc] initWithFrame:appFrame];
+    self.mainView = [[SlidingView alloc] initWithFrame:pickerFrame];
     self.mainView.autoresizesSubviews = YES;
     self.view = self.mainView;
     
-    self.pickerView = [[ColorPickerView alloc] initWithFrame:appFrame];
+    self.pickerView = [[ColorPickerView alloc] initWithFrame:pickerFrame];
     self.pickerView.autoresizingMask = (UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight);
     self.mainView.centerView = self.pickerView;
     
@@ -51,7 +50,7 @@
     tapRecognizer.delegate = self;
     [self.pickerView addGestureRecognizer:tapRecognizer];
     
-    self.cameraView = [[UIView alloc] initWithFrame:appFrame];
+    self.cameraView = [[CameraPickerView alloc] initWithFrame:pickerFrame];
     self.cameraView.backgroundColor = [UIColor redColor];
     self.mainView.rightView = self.cameraView;
     
@@ -66,6 +65,8 @@
     self.fingerButton.titleLabel.text = @"F";
     [self.fingerButton addTarget:self action:@selector(onFingerButtonTap) forControlEvents:UIControlEventTouchUpInside];
     [self.cameraView addSubview:self.fingerButton];
+    
+    [self initCamera];
 }
 
 - (void)viewDidLoad
@@ -124,5 +125,62 @@
     return YES;
 }
 
+#pragma mark Camera methods
+- (void)initCamera {
+    AVCaptureSession *session = [[AVCaptureSession alloc] init];
+    session.sessionPreset = AVCaptureSessionPresetHigh;
+    
+    AVCaptureDevice *device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
+    
+    NSError *error;
+    AVCaptureDeviceInput *input = [AVCaptureDeviceInput deviceInputWithDevice:device error:&error];
+    
+    if(! input) {
+        NSLog(@"Problem with grabbing input device");
+        return;
+    }
+    [session addInput:input];
+    
+    previewLayer = [AVCaptureVideoPreviewLayer layerWithSession:session];
+    self.cameraView.previewLayer = previewLayer;
+    
+    AVCaptureVideoDataOutput *output = [[AVCaptureVideoDataOutput alloc] init];
+    output.alwaysDiscardsLateVideoFrames = YES;
+    output.videoSettings = [NSDictionary dictionaryWithObject:[NSNumber numberWithInt:kCVPixelFormatType_32BGRA] forKey:(id)kCVPixelBufferPixelFormatTypeKey];
+    [output setSampleBufferDelegate:self queue:dispatch_get_main_queue()];
+
+    [session startRunning];
+}
+
+#pragma mark AVCapture delegate methods
+- (void)captureOutput:(AVCaptureOutput *)captureOutput didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer fromConnection:(AVCaptureConnection *)connection {
+    CVImageBufferRef pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer);
+    
+    CVPixelBufferLockBaseAddress(pixelBuffer, 0);
+    
+    int bufferWidth = CVPixelBufferGetWidth(pixelBuffer);
+    int bufferHeight = CVPixelBufferGetHeight(pixelBuffer);
+    
+    int videoPointX = round((self.view.bounds.size.width / 2) * (CGFloat)bufferHeight / self.view.bounds.size.width);
+    int videoPointY = round((self.view.bounds.size.height / 2) * (CGFloat)bufferWidth / self.view.bounds.size.height);
+    
+    unsigned char *rowBase = (unsigned char *)CVPixelBufferGetBaseAddress(pixelBuffer);
+    int bytesPerRow = CVPixelBufferGetBytesPerRow(pixelBuffer);
+    unsigned char *pixel = NULL;
+    int avgRed = 0, avgGreen = 0, avgBlue = 0, x, y;
+    
+    for(y = videoPointY - 5; y < videoPointY + 5; y ++) {
+        for(x = videoPointX - 5; x < videoPointX + 5; x ++) {
+            pixel = rowBase + (x * bytesPerRow) + (y * 4);
+            avgBlue += pixel[0];
+            avgGreen += pixel[1];
+            avgRed += pixel[2];
+        }
+    }
+    
+    avgBlue /= 100;
+    avgGreen /= 100;
+    avgRed /= 100;
+}
 
 @end

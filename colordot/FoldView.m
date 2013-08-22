@@ -53,7 +53,7 @@
         
         // Set perspective on leaves
         CATransform3D transform = CATransform3DIdentity;
-        transform.m34 = -1 / 800.0;
+        transform.m34 = -1 / 1000.0;
         self.layer.sublayerTransform = transform;
         
         _rightLeafView.layer.transform = CATransform3DMakeRotation(M_PI_2, 0, -1, 0);

@@ -7,8 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <AVFoundation/AVFoundation.h>
 #import "SlidingView.h"
-@class ColorPickerView;
+#import "CameraPickerView.h"
+#import "ColorPickerView.h"
 
 typedef enum {
     UIColorPickerTypeFinger,
@@ -21,16 +23,18 @@ typedef enum {
 
 @end
 
-@interface PickerViewController : UIViewController <UIGestureRecognizerDelegate> {
+@interface PickerViewController : UIViewController <UIGestureRecognizerDelegate, AVCaptureVideoDataOutputSampleBufferDelegate> {
     CGFloat _lastHue;
     CGFloat _lastBrightness;
     CGFloat _lastSaturation;
     CGFloat _saturationOnPinchStart;
     UIColor *lastPickedColor;
+    
+    AVCaptureVideoPreviewLayer *previewLayer;
 }
 @property (nonatomic, strong) SlidingView *mainView;
 @property (nonatomic, strong) ColorPickerView *pickerView;
-@property (nonatomic, strong) UIView *cameraView;
+@property (nonatomic, strong) CameraPickerView *cameraView;
 @property (nonatomic, strong) UIButton *cameraButton, *fingerButton;
 @property (nonatomic, weak) id <PickerDelegate> delegate;
 @property UIColorPickerModes pickerMode;

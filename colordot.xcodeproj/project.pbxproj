@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		0304E66F17C51396000D25A0 /* SlidingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0304E66E17C51396000D25A0 /* SlidingView.m */; };
+		0318827317C6632D0049409E /* CameraPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0318827217C6632D0049409E /* CameraPickerView.m */; };
+		0318827517C6713B0049409E /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0318827417C6713B0049409E /* CoreVideo.framework */; };
+		0318827717C671A20049409E /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0318827617C671A20049409E /* CoreMedia.framework */; };
 		036F9BD9179066CF00382EE5 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 036F9BD8179066CF00382EE5 /* AVFoundation.framework */; };
 		03AAEA4C17B5304B00BAD490 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03AAEA4B17B5304B00BAD490 /* QuartzCore.framework */; };
 		03E1157C176B68F60064284D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03E1157B176B68F60064284D /* UIKit.framework */; };
@@ -61,6 +64,10 @@
 /* Begin PBXFileReference section */
 		0304E66D17C51396000D25A0 /* SlidingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SlidingView.h; sourceTree = "<group>"; };
 		0304E66E17C51396000D25A0 /* SlidingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SlidingView.m; sourceTree = "<group>"; };
+		0318827117C6632D0049409E /* CameraPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraPickerView.h; sourceTree = "<group>"; };
+		0318827217C6632D0049409E /* CameraPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraPickerView.m; sourceTree = "<group>"; };
+		0318827417C6713B0049409E /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
+		0318827617C671A20049409E /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		03332C1F1783113B007AF78F /* DirectionalPanGestureRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DirectionalPanGestureRecognizer.h; sourceTree = "<group>"; };
 		03332C201783113B007AF78F /* DirectionalPanGestureRecognizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DirectionalPanGestureRecognizer.m; sourceTree = "<group>"; };
 		0344F84617B2F91B007A008E /* ColorObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorObject.h; sourceTree = "<group>"; };
@@ -129,6 +136,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0318827717C671A20049409E /* CoreMedia.framework in Frameworks */,
+				0318827517C6713B0049409E /* CoreVideo.framework in Frameworks */,
 				03AAEA4C17B5304B00BAD490 /* QuartzCore.framework in Frameworks */,
 				036F9BD9179066CF00382EE5 /* AVFoundation.framework in Frameworks */,
 				03E1157C176B68F60064284D /* UIKit.framework in Frameworks */,
@@ -228,6 +237,8 @@
 				03A5557B177DD01E00C513ED /* PickerViewController.m */,
 				03A5557D177DD3A400C513ED /* ColorPickerView.h */,
 				03A5557E177DD3A400C513ED /* ColorPickerView.m */,
+				0318827117C6632D0049409E /* CameraPickerView.h */,
+				0318827217C6632D0049409E /* CameraPickerView.m */,
 			);
 			name = PickerView;
 			sourceTree = "<group>";
@@ -235,7 +246,8 @@
 		03E1156F176B68F60064284D = {
 			isa = PBXGroup;
 			children = (
-				03AAEA4B17B5304B00BAD490 /* QuartzCore.framework */,
+				0318827617C671A20049409E /* CoreMedia.framework */,
+				0318827417C6713B0049409E /* CoreVideo.framework */,
 				03E11583176B68F60064284D /* colordot */,
 				03E115A5176B68F60064284D /* colordotTests */,
 				03E1157A176B68F60064284D /* Frameworks */,
@@ -255,6 +267,7 @@
 		03E1157A176B68F60064284D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				03AAEA4B17B5304B00BAD490 /* QuartzCore.framework */,
 				036F9BD8179066CF00382EE5 /* AVFoundation.framework */,
 				03E1157B176B68F60064284D /* UIKit.framework */,
 				03E1157D176B68F60064284D /* Foundation.framework */,
@@ -480,6 +493,7 @@
 				03F555B917C38685005042F6 /* ColorDotViewController.m in Sources */,
 				03F555BA17C38685005042F6 /* main.m in Sources */,
 				0304E66F17C51396000D25A0 /* SlidingView.m in Sources */,
+				0318827317C6632D0049409E /* CameraPickerView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
