@@ -148,6 +148,7 @@
     output.alwaysDiscardsLateVideoFrames = YES;
     output.videoSettings = [NSDictionary dictionaryWithObject:[NSNumber numberWithInt:kCVPixelFormatType_32BGRA] forKey:(id)kCVPixelBufferPixelFormatTypeKey];
     [output setSampleBufferDelegate:self queue:dispatch_get_main_queue()];
+    [session addOutput:output];
 
     [session startRunning];
 }
@@ -181,6 +182,9 @@
     avgBlue /= 100;
     avgGreen /= 100;
     avgRed /= 100;
+    
+    UIColor *sampledColor = [UIColor colorWithRed:avgRed / 255.0f green:avgGreen / 255.0f blue:avgBlue / 255.0f alpha:1.0f];
+    self.cameraView.backgroundColor = sampledColor;
 }
 
 @end
