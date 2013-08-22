@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "UIColorPickerDelegate.h"
+#import "SlidingView.h"
 @class ColorPickerView;
 
 typedef enum {
@@ -15,16 +15,23 @@ typedef enum {
     UIColorPickerTypeCamera
 } UIColorPickerModes;
 
-@interface UIColorPickerViewController : UIViewController {
+@protocol PickerDelegate <NSObject>
+
+- (void)colorPicked: (UIColor *)color;
+
+@end
+
+@interface PickerViewController : UIViewController <UIGestureRecognizerDelegate> {
     CGFloat _lastHue;
     CGFloat _lastBrightness;
     CGFloat _lastSaturation;
     CGFloat _saturationOnPinchStart;
     UIColor *lastPickedColor;
 }
+@property (nonatomic, strong) SlidingView *mainView;
 @property (nonatomic, strong) ColorPickerView *pickerView;
 @property (nonatomic, strong) UIView *cameraView;
-@property (nonatomic, weak) id <UIColorPickerDelegate> delegate;
+@property (nonatomic, weak) id <PickerDelegate> delegate;
 @property UIColorPickerModes pickerMode;
 
 @end

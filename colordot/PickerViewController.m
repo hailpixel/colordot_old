@@ -6,11 +6,11 @@
 //  Copyright (c) 2013 Devin Hunt. All rights reserved.
 //
 
-#import "UIColorPickerViewController.h"
+#import "PickerViewController.h"
 #import "ColorPickerView.h"
 
 
-@implementation UIColorPickerViewController
+@implementation PickerViewController
 @synthesize delegate;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -29,15 +29,16 @@
 - (void)loadView {
     CGRect appFrame = [[UIScreen mainScreen] bounds];
     
-    UIView *mainView = [[UIView alloc] initWithFrame:appFrame];
-    mainView.autoresizesSubviews = YES;
-    self.view = mainView;
+    self.mainView = [[SlidingView alloc] initWithFrame:appFrame];
+    self.mainView.autoresizesSubviews = YES;
+    self.view = self.mainView;
     
     self.pickerView = [[ColorPickerView alloc] initWithFrame:appFrame];
     self.pickerView.autoresizingMask = (UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight);
-    [self.view addSubview:self.pickerView];
+    self.mainView.centerView = self.pickerView;
     
     UIPanGestureRecognizer *panRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(respondToPan:)];
+    panRecognizer.delegate = self;
     panRecognizer.maximumNumberOfTouches = 1;
     panRecognizer.minimumNumberOfTouches = 1;
     [self.pickerView addGestureRecognizer:panRecognizer];
@@ -48,6 +49,10 @@
     UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(respondToTap:)];
     tapRecognizer.numberOfTapsRequired = 1;
     [self.pickerView addGestureRecognizer:tapRecognizer];
+    
+    self.cameraView = [[UIView alloc] initWithFrame:appFrame];
+    self.cameraView.backgroundColor = [UIColor redColor];
+    self.mainView.rightView = self.cameraView;
 }
 
 - (void)viewDidLoad
@@ -87,6 +92,10 @@
     [self.pickerView setColor:lastPickedColor];
 }
 
-#pragma mark Camera Mode setup and delegate methods
+#pragma mark Gesture delegate methods
+- (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer {
+    return NO;
+}
+
 
 @end

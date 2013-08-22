@@ -7,7 +7,6 @@
 //
 
 #import "PaletteTableViewController.h"
-#import "PaletteObject.h"
 #import "PaletteViewController.h"
 
 @interface PaletteTableViewController ()
@@ -28,9 +27,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addPalette:)];
-    self.navigationItem.rightBarButtonItem = addButton;
 }
 
 - (void)didReceiveMemoryWarning
@@ -57,7 +53,7 @@
 }
 
 #pragma mark - Addition / deletion
-- (void)addPalette:(id)sender {
+- (PaletteObject *)makeNewPalette {
     PaletteObject *newPalette = (PaletteObject *) [NSEntityDescription insertNewObjectForEntityForName:@"Palette" inManagedObjectContext:self.managedObjectContext];
     newPalette.created = [NSDate date];
     
@@ -73,6 +69,8 @@
     
     [self.tableView reloadData];
     [self.navigationController pushViewController:paletteViewController animated:YES];
+    
+    return newPalette;
 }
 
 #pragma mark - Table view data source

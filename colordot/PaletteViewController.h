@@ -7,29 +7,23 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "UISwatchListDataSource.h"
-#import "UISwatchListDelegate.h"
-#import "UIColorPickerDelegate.h"
 #import "PaletteObject.h"
 #import "PaletteView.h"
+#import "SwatchListViewController.h"
+#import "PickerViewController.h"
 
-@class UISwatchListViewController, UIColorPickerViewController, UISwatchListView;
-
-@interface PaletteViewController : UIViewController <UISwatchListDataSource, UISwatchListDelegate, UIColorPickerDelegate> {
+@interface PaletteViewController : UIViewController {
     BOOL isPickerOpen;
 }
 
 // Controllers
-@property (nonatomic, strong) UIColorPickerViewController *pickerViewController;
+@property (nonatomic, strong) SwatchListViewController *swatchListViewController;
+@property (nonatomic, strong) PickerViewController *pickerViewController;
 
-// Views
+// View
 @property (nonatomic, strong) PaletteView *paletteView;
-@property (nonatomic, strong) UISwatchListView *swatchListView;
 
 // Data
-@property (nonatomic, strong) NSMutableArray *colors;
 @property (nonatomic, strong) PaletteObject *palette;
-
-- (void)addColor:(UIColor *)color;
 
 @end

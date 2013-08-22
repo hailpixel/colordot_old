@@ -21,10 +21,9 @@
     
     ColorDotViewController *rvc = [[ColorDotViewController alloc] init];
     rvc.managedObjectContext = self.managedObjectContext;
-    
     self.window.rootViewController = rvc;
     [self.window addSubview:rvc.view];
-    
+
     [self.window makeKeyAndVisible];
     return YES;
 } 

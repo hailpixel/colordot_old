@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PaletteObject.h"
 
 @interface PaletteTableViewController : UITableViewController
 
@@ -14,6 +15,7 @@
 @property (nonatomic, strong) NSMutableArray *palettes;
 
 - (void)fetchPalettes;
+- (PaletteObject *)makeNewPalette;
 
 
 @end

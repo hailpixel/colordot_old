@@ -8,7 +8,7 @@
 
 #import "ColorDotViewController.h"
 #import "PaletteObject.h"
-#import "UISwatchListView.h"
+#import "SwatchListView.h"
 #import "FoldingView.h"
 
 @interface ColorDotViewController ()
@@ -43,19 +43,21 @@
     
     //TODO: We need to use the last palette being worked on,
     // or if there are none, create a new a new VALID palette object.
-    self.paletteController.palette = self.paletteTableController.palettes[0];
+    //self.paletteController.palette = self.paletteTableController.palettes[0];
     
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    PaletteObject *palette;
     if(indexPath.row == 0) {
-        // new palette
+        palette = [self.paletteTableController makeNewPalette];
     } else {
         NSInteger row = indexPath.row - 1;
-        PaletteObject *palette = self.paletteTableController.palettes[row];
-        self.paletteController.palette = palette;
-        self.foldingView.state = FoldingStateDefault;
+        palette = self.paletteTableController.palettes[row];
     }
+    
+    self.paletteController.palette = palette;
+    self.foldingView.state = FoldingStateDefault;
 }
 
 @end
