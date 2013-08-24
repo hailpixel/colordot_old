@@ -109,10 +109,12 @@
 #pragma mark Tapping between views
 - (void)onCameraButtonTap {
     self.mainView.state = SlidingViewRightOpen;
+    [cameraSession startRunning];
 }
 
 - (void)onFingerButtonTap {
     self.mainView.state = SlidingViewDefault;
+    [cameraSession stopRunning];
 }
 
 #pragma mark Gesture delegate methods
@@ -127,8 +129,8 @@
 
 #pragma mark Camera methods
 - (void)initCamera {
-    AVCaptureSession *session = [[AVCaptureSession alloc] init];
-    session.sessionPreset = AVCaptureSessionPresetHigh;
+    cameraSession = [[AVCaptureSession alloc] init];
+    cameraSession.sessionPreset = AVCaptureSessionPresetHigh;
     
     AVCaptureDevice *device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
     
@@ -139,18 +141,16 @@
         NSLog(@"Problem with grabbing input device");
         return;
     }
-    [session addInput:input];
+    [cameraSession addInput:input];
     
-    previewLayer = [AVCaptureVideoPreviewLayer layerWithSession:session];
+    previewLayer = [AVCaptureVideoPreviewLayer layerWithSession:cameraSession];
     self.cameraView.previewLayer = previewLayer;
     
     AVCaptureVideoDataOutput *output = [[AVCaptureVideoDataOutput alloc] init];
     output.alwaysDiscardsLateVideoFrames = YES;
     output.videoSettings = [NSDictionary dictionaryWithObject:[NSNumber numberWithInt:kCVPixelFormatType_32BGRA] forKey:(id)kCVPixelBufferPixelFormatTypeKey];
     [output setSampleBufferDelegate:self queue:dispatch_get_main_queue()];
-    [session addOutput:output];
-
-    [session startRunning];
+    [cameraSession addOutput:output];
 }
 
 #pragma mark AVCapture delegate methods

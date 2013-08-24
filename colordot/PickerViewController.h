@@ -30,6 +30,7 @@ typedef enum {
     CGFloat _saturationOnPinchStart;
     UIColor *lastPickedColor;
     
+    AVCaptureSession *cameraSession;
     AVCaptureVideoPreviewLayer *previewLayer;
 }
 @property (nonatomic, strong) SlidingView *mainView;
