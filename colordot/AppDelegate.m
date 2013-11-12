@@ -96,7 +96,9 @@
         return _managedObjectModel;
     }
     NSURL *modelURL = [[NSBundle mainBundle] URLForResource:@"colordot" withExtension:@"momd"];
+    NSLog(@"%@ %@", @"it is", modelURL);
     _managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];
+    NSLog(@"%@", _managedObjectModel);
     return _managedObjectModel;
 }
 

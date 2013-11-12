@@ -27,7 +27,7 @@
         _paletteController = paletteController;
         _paletteTableController = [[PaletteTableViewController alloc] initWithStyle:UITableViewStylePlain];
         _paletteTableController.tableView.delegate = self;
-        [self setLeftViewController:self.paletteTableController width:220.0f];
+        [self setLeftViewController:self.paletteTableController width:260.0f];
         
         self.foldingView.activeArea = CGRectMake(0.0f, 0.0f, 50.0f, self.foldingView.frame.size.height);
     }

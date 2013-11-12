@@ -12,6 +12,7 @@
 		0318827517C6713B0049409E /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0318827417C6713B0049409E /* CoreVideo.framework */; };
 		0318827717C671A20049409E /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0318827617C671A20049409E /* CoreMedia.framework */; };
 		036F9BD9179066CF00382EE5 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 036F9BD8179066CF00382EE5 /* AVFoundation.framework */; };
+		0387185117F078E700610060 /* colordot.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 03E11595176B68F60064284D /* colordot.xcdatamodeld */; };
 		03AAEA4C17B5304B00BAD490 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03AAEA4B17B5304B00BAD490 /* QuartzCore.framework */; };
 		03E1157C176B68F60064284D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03E1157B176B68F60064284D /* UIKit.framework */; };
 		03E1157E176B68F60064284D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03E1157D176B68F60064284D /* Foundation.framework */; };
@@ -472,6 +473,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0387185117F078E700610060 /* colordot.xcdatamodeld in Sources */,
 				03F555A717C38685005042F6 /* FoldingView.m in Sources */,
 				03F555A817C38685005042F6 /* FoldingViewController.m in Sources */,
 				03F555A917C38685005042F6 /* FoldLeaf.m in Sources */,
@@ -598,7 +600,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "colordot/colordot-Prefix.pch";
 				INFOPLIST_FILE = "colordot/colordot-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -609,7 +613,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "colordot/colordot-Prefix.pch";
 				INFOPLIST_FILE = "colordot/colordot-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
