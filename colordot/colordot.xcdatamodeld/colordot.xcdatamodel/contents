@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="2061" systemVersion="12E55" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="3396" systemVersion="13A603" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="Color" representedClassName="ColorObject" syncable="YES">
         <attribute name="brightness" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="hue" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
@@ -10,10 +10,10 @@
     <entity name="Palette" representedClassName="PaletteObject" syncable="YES">
         <attribute name="created" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="colors" optional="YES" toMany="YES" maxCount="6" deletionRule="Nullify" destinationEntity="Color" inverseName="palette" inverseEntity="Color" syncable="YES"/>
+        <relationship name="colors" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Color" inverseName="palette" inverseEntity="Color" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Color" positionX="162" positionY="351" width="128" height="120"/>
-        <element name="Palette" positionX="160" positionY="192" width="128" height="88"/>
+        <element name="Color" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="Palette" positionX="0" positionY="0" width="0" height="0"/>
     </elements>
 </model>
